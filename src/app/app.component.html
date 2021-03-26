@@ -1,0 +1,48 @@
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<!-- * * * * * * * * * * App component * * * * * * * * * * * -->
+<!-- * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * -->
+<h1 *ngIf="getUserName"> Welcome to app component</h1>
+
+
+
+
+  <div *ngIf="getUserName">
+    <h3>{{getUserName}}</h3>
+    <h3>{{username}}</h3>
+    <h2>User</h2>
+  <p>{{ userName }}</p>
+
+  <h2>Id-Token</h2>
+  <p>{{ idToken }}</p>
+
+  <h2>Access Token</h2>
+  <p>{{ accessToken }}</p>
+
+  <p>
+    <button (click)="refresh()">Refresh</button>
+  </p>
+
+    <button  color="primary" style="float: right;" (click)="logout()">
+     Logout</button>
+  </div>
+
+<div *ngIf="!getUserName">
+  <button  color="primary" (click)="login()">
+    Login</button>
+</div>
+
+
+<form *ngIf="getUserName">
+  <div class="form-group">
+    <label for="exampleInputEmail1">Enter Test data</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter email">
+     </div>
+  
+  <div class="form-check">
+    <input type="checkbox" class="form-check-input" id="exampleCheck1">
+    <label class="form-check-label" for="exampleCheck1">Test check box</label>
+  </div>
+  
+</form>
+
+<router-outlet></router-outlet>
