@@ -8,7 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 import { OAuthModule } from 'angular-oauth2-oidc';
 import { LogoutComponent } from './logout/logout.component';
-import { ValidationHandler, OAuthStorage, OAuthModuleConfig } from 'angular-oauth2-oidc'; // Added
+import { ValidationHandler, OAuthStorage, OAuthModuleConfig } from 'angular-oauth2-oidc';
+import { UserIdleComponent } from './user-idle/user-idle.component'; // Added
+//Adde for user idle or user activity
+
+
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 export const authModuleConfig: OAuthModuleConfig = {
@@ -28,12 +33,15 @@ export function storageFactory(): OAuthStorage {
 @NgModule({
   declarations: [
     AppComponent,
-    LogoutComponent
+    LogoutComponent,
+    UserIdleComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    FormsModule,
+    ReactiveFormsModule,
     OAuthModule.forRoot(authModuleConfig)
   ],
   providers: [

@@ -1,0 +1,109 @@
+app-user-idle .rectangle {
+	 height: 160px;
+	 width: 400px;
+	 border-radius: 2px;
+	 background-color: lightblue;
+	 box-shadow: 0 1px 0 0 lightblue;
+	 margin: auto;
+}
+ app-user-idle .rectangle .center {
+	 text-align: center;
+}
+ app-user-idle .rectangle .margin-form {
+	 margin: 15px;
+	 font-size: 14px;
+	 text-align: left;
+}
+ app-user-idle .timer {
+	 margin-top: 50px;
+}
+ app-user-idle .timer .base-timer {
+	 position: relative;
+	 height: 300px;
+	 width: 300px;
+	 margin: auto;
+}
+ app-user-idle .timer .base-timer__circle {
+	 fill: none;
+	 stroke: none;
+}
+ app-user-idle .timer .base-timer__path-elapsed {
+	 stroke-width: 7px;
+	 stroke: grey;
+}
+ app-user-idle .timer .base-timer__label {
+	 position: absolute;
+	 width: 300px;
+	 height: 300px;
+	 top: 0;
+	 display: flex;
+	 align-items: center;
+	 justify-content: center;
+	 font-size: 48px;
+}
+ app-user-idle .timer .base-timer__path-remaining {
+	 stroke-width: 7px;
+	 stroke-linecap: round;
+	 transform: rotate(90deg);
+	 transform-origin: center;
+	 transition: 1s linear all;
+	 stroke: currentColor;
+	 color: green;
+}
+ app-user-idle .timer .base-timer__svg {
+	 transform: scaleX(-1);
+}
+ app-user-idle .modal-container .modal {
+	 display: none;
+	 position: fixed;
+	 z-index: 1;
+	 left: 0;
+	 top: 0;
+	 width: 100%;
+	 height: 100%;
+	 overflow: auto;
+	 background-color: #000;
+	 background-color: rgba(0, 0, 0, 0.4);
+}
+ app-user-idle .modal-container .modal-content {
+	 background-color: #fefefe;
+	 margin: 15% auto;
+	 padding: 20px;
+	 border: 1px solid #888;
+	 width: 50%;
+}
+ app-user-idle .modal-container .close {
+	 color: #aaa;
+	 float: right;
+	 font-size: 28px;
+	 font-weight: bold;
+}
+ app-user-idle .modal-container .close:hover, app-user-idle .modal-container .close:focus {
+	 color: black;
+	 text-decoration: none;
+	 cursor: pointer;
+}
+ app-user-idle .modal-container .clock-style {
+	 display: inline-block;
+	 width: 15em;
+	 text-align: left;
+	 margin-bottom: 18px;
+}
+ app-user-idle .modal-container .clock-style span {
+	 padding: 0px 4px;
+}
+ app-user-idle .modal-container .time-in-mins {
+	 font-size: 18px;
+	 color: green;
+}
+ app-user-idle button {
+	 margin: 5px;
+	 background-color: #4caf50;
+	 border: none;
+	 color: white;
+	 padding: 15px 32px;
+	 text-align: center;
+	 text-decoration: none;
+	 display: inline-block;
+	 font-size: 16px;
+}

@@ -4,7 +4,7 @@ import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 import { OAuthModule, ValidationHandler,OAuthErrorEvent, OAuthStorage, OAuthModuleConfig } from 'angular-oauth2-oidc';
 import { filter } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable, ReplaySubject } from 'rxjs';
-
+import { Router } from '@angular/router';
 
 export const authConfig: AuthConfig = {
   issuer: 'https://dev-32616721.okta.com/oauth2/default',
@@ -40,7 +40,7 @@ export const authConfig: AuthConfig = {
 export class AppComponent {
   title = 'naga-okta-oidc-silentrefresh';
   username = '';
-  constructor(private oauthService: OAuthService) {
+  constructor(private oauthService: OAuthService,private router: Router) {
     this.oauthService.configure(authConfig);
    this.oauthService.tokenValidationHandler=new JwksValidationHandler();
   this.oauthService.events.subscribe(e => e instanceof OAuthErrorEvent ? console.error(e) : console.warn(e));
@@ -69,6 +69,7 @@ export class AppComponent {
    login() {
    console.log("Logininit")
     this.oauthService.initImplicitFlow();
+   
   }
   logout() {
     this.oauthService.logOut();
@@ -92,6 +93,8 @@ export class AppComponent {
   refresh() {
     this.oauthService.refreshToken();
   }
-
+  userActivity(){
+    this.router.navigate(['/user-activity']);
+  }
 
 }
