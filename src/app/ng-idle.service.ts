@@ -56,6 +56,7 @@ export class NgIdleService implements OnDestroy {
       window.document.addEventListener('click', this.userActivityChangeCallback.bind(this), true);
       window.document.addEventListener('scroll', this.userActivityChangeCallback.bind(this), true);
       window.document.addEventListener('keypress', this.userActivityChangeCallback.bind(this), true);
+      window.document.addEventListener('mousemove', this.userActivityChangeCallback.bind(this), true);
     });
   }
 
@@ -96,6 +97,7 @@ export class NgIdleService implements OnDestroy {
         window.document.removeEventListener('click', this.userActivityChangeCallback, true);
         window.document.removeEventListener('scroll',this.userActivityChangeCallback, true);
          window.document.removeEventListener('keypress',this.userActivityChangeCallback, true);
+         window.document.removeEventListener('mousemove',this.userActivityChangeCallback, true);
         this.zone.run(() => {
           if (this.userIdlenessChecker) {
             this.userIdlenessChecker.next('STOPPED_TIMER');

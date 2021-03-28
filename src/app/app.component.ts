@@ -1,10 +1,12 @@
-import { Component } from '@angular/core';
+import { Component,OnInit } from '@angular/core';
 import { OAuthService, AuthConfig } from 'angular-oauth2-oidc';
 import { JwksValidationHandler } from 'angular-oauth2-oidc-jwks';
 import { OAuthModule, ValidationHandler,OAuthErrorEvent, OAuthStorage, OAuthModuleConfig } from 'angular-oauth2-oidc';
 import { filter } from 'rxjs/operators';
 import { BehaviorSubject, combineLatest, Observable, ReplaySubject } from 'rxjs';
 import { Router } from '@angular/router';
+import { UserIdleComponent } from './user-idle/user-idle.component';
+import { AfterViewInit, ViewChild } from '@angular/core';
 
 export const authConfig: AuthConfig = {
   issuer: 'https://dev-32616721.okta.com/oauth2/default',
@@ -17,8 +19,8 @@ export const authConfig: AuthConfig = {
      // ? '/#/index.html'
      // : '/index.html'),
      responseType: 'id_token token',
-  redirectUri: window.location.origin,
-
+  redirectUri: window.location.origin +'/user-activity',
+  postLogoutRedirectUri:window.location.origin,
   // URL of the SPA to redirect the user after silent refresh
   silentRefreshRedirectUri:window.location.origin + '/silent-refresh.html',
 
@@ -40,18 +42,15 @@ export const authConfig: AuthConfig = {
 export class AppComponent {
   title = 'naga-okta-oidc-silentrefresh';
   username = '';
+
+   
+
   constructor(private oauthService: OAuthService,private router: Router) {
     this.oauthService.configure(authConfig);
    this.oauthService.tokenValidationHandler=new JwksValidationHandler();
   this.oauthService.events.subscribe(e => e instanceof OAuthErrorEvent ? console.error(e) : console.warn(e));
     this.oauthService.loadDiscoveryDocumentAndTryLogin()
-    // If not logged in yet, try silent refresh:
-    .then(() => {
-        if (!oauthService.hasValidAccessToken()) {
-          return oauthService.silentRefresh();
-        }
-      })
-
+    
       // Fetch username.
       .then(() => {
         if (oauthService.getIdentityClaims()) {
@@ -65,10 +64,13 @@ export class AppComponent {
       .subscribe(_ => this.oauthService.loadUserProfile());
   }
 
+  ngOnInit() :void{}
+
 
    login() {
    console.log("Logininit")
     this.oauthService.initImplicitFlow();
+   
    
   }
   logout() {

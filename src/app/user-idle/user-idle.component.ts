@@ -18,7 +18,7 @@ export class UserIdleComponent implements OnInit {
   timeRemain: number;
   FULL_DASH_ARRAY = 283;
 
-  constructor(private ngIdle: NgIdleService, private fb: FormBuilder) { }
+  constructor( private ngIdle: NgIdleService, private fb: FormBuilder) { }
 
   ngOnInit(): void {
     this.inputForm = this.fb.group({
@@ -27,6 +27,8 @@ export class UserIdleComponent implements OnInit {
     });
     this.onSubmit();
   }
+
+
 
   /**
    * Draw timer circle
